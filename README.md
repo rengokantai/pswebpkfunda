@@ -212,7 +212,7 @@ module.exports ={
 }
 ```
 #####4
-######1 css loaders
+######2 css loaders
 ```
 npm install css-loader style-loader --save-dev
 ```
@@ -264,6 +264,111 @@ module.exports ={
                 test:/\.css$/,
                 exclude: /node_modules/,
                 loader: 'style-loader!css-loader',//css loader first
+            }
+        ]
+    },
+    resolve:{
+        extensions:['','.js']
+    }
+}
+```
+######3 css-loader will load css in HTML page.
+######4 scss (MUST install node-sass)
+```
+npm install sass-loader node-sass --save-dev
+```
+file:
+```
+var path = require('path');
+var webpack = require('webpack');
+
+var common = new webpack.optimize.CommonsChunkPlugin('shared.js');
+module.exports ={
+
+    context:path.resolve('js'),
+    entry:["./app.js"],
+    output:{
+        path:path.resolve('build/js/'),
+        publicPath:'/public/assets/js/',
+        filename:"bundle.js"
+    },
+    devServer:{
+        contentBase:'public'
+    },
+    module:{
+        loaders:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
+            },{
+                test:/\.css$/,
+                exclude: /node_modules/,
+                loader: 'style-loader!css-loader'//css loader first
+            },{
+                test:/\.scss$/,
+                exclude: /node_modules/,
+                loader: 'style-loader!css-loader!sass-loader'//css loader first
+            }
+        ]
+    },
+    resolve:{
+        extensions:['','.js']
+    }
+}
+```
+######6 make saperate css file. Must install extract-text-webpack-plugin
+```
+npm install extract-text-webpack-plugin --save-dev
+```
+file:
+```
+/**
+ * Created by Hernan Y.Ke on 2016/3/24.
+ */
+
+var path = require('path');
+var webpack = require('webpack');
+var Extract = require('extract-text-webpack-plugin');
+var common = new webpack.optimize.CommonsChunkPlugin('shared.js');
+
+
+module.exports ={
+
+    context:path.resolve('js'),
+    entry:["./app.js"],
+    output:{
+        path:path.resolve('build/'),
+        publicPath:'/public/assets/',
+        filename:"bundle.js"
+    },
+    plugins:[
+        new Extract("style.css")
+    ],
+    devServer:{
+        contentBase:'public'
+    },
+    module:{
+        loaders:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
+            },{
+                test:/\.css$/,
+                exclude: /node_modules/,
+                //loader: 'style-loader!css-loader'//css loader first
+                loader: Extract.extract("style-loader","css-loader")
+            },{
+                test:/\.scss$/,
+                exclude: /node_modules/,
+                loader: 'style-loader!css-loader!sass-loader'//css loader first
             }
         ]
     },
