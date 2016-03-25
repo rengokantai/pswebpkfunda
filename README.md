@@ -65,3 +65,12 @@ module.exports ={
     }
 }
 ```
+######2-9
+minimize js
+```
+webpack -p
+```
+install strip-loader, purge unnecessary func
+```
+webpack --config webpack-production.config.js -p
+```

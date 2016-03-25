@@ -4,7 +4,8 @@
   "description": "```\r module.exports ={\r     entry:\"./app.js\",\r     output:{\r         filename:\"bundle.js\"\r     }\r }\r ```\r ######4 watch\r - manually\r ```\r webpack --watch\r ```\r - config\r ```\r module.exports ={\r     entry:\"./app.js\",\r     output:{\r         filename:\"bundle.js\"\r     },\r     watch: true\r }\r ```\r install devserver\r ```\r npm install -g webpack-dev-server\r ```\r run server\r ```\r webpack-dev-server\r ```\r run server concisely\r ```\r webpack-dev-server\r ```",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,10 @@
     "jshint": "^2.9.1",
     "jshint-loader": "^0.8.3",
     "node-libs-browser": "^1.0.0",
+    "strip-loader": "^0.1.2",
     "webpack": "^1.12.14"
+  },
+  "dependencies": {
+    "http-server": "^0.9.0"
   }
 }
