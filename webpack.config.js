@@ -38,7 +38,7 @@ module.exports ={
                 loader: 'style-loader!css-loader!autoprefixer-loader'//css loader first
                 //loader: Extract.extract("style-loader","css-loader")
             },{
-                test:/\.(jpg|png)$/,
+                test:/\.(jpg|png|ttf|woff)$/,
                 exclude: /node_modules/,
                 loader: 'url-loader?limit=100000'//? means pass params. image < 100K will be transcode to base64, >100K will be seperate request.
                 //loader: Extract.extract("style-loader","css-loader")
