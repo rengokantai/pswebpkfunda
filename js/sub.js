@@ -1,4 +1,6 @@
 /**
  * Created by Hernan Y.Ke on 2016/3/24.
  */
-console.log('sub');
+export function x (){
+    console.log('sub');
+}

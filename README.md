@@ -93,7 +93,7 @@ module.exports = dev;
 ```
 #####3
 ######2 reorg folders
-```
+```js
 var path = require('path');
 module.exports ={
 
@@ -126,5 +126,42 @@ in index.html:
 ```
 <script src="public/assets/js/bundle.js"></script>
 ```
+######3
+note: by default,babel-loader only support es6 files, to support js extension, must install babel-preset-es2015  
+[see this](http://stackoverflow.com/questions/33469929/you-may-need-an-appropriate-loader-to-handle-this-file-type-with-webpack-and-b)
+file:
+```js
+/**
+ * Created by Hernan Y.Ke on 2016/3/24.
+ */
 
+var path = require('path');
+module.exports ={
 
+    context:path.resolve('js'),
+    entry:["./sub", "./app.js"],
+    output:{
+        path:path.resolve('build/js/'),
+        publicPath:'/public/assets/js/',
+        filename:"bundle.js"
+    },
+    devServer:{
+        contentBase:'public'
+    },
+    module:{
+        loaders:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
+            }
+        ]
+    },
+    resolve:{
+        extensions:['','.js']
+    }
+}
+```
