@@ -5,3 +5,4 @@ import {x} from './sub';
 x();
 document.write('hernan.');
 console.log(`write`);
+require('../css/app.css');

@@ -9,7 +9,7 @@ var common = new webpack.optimize.CommonsChunkPlugin('shared.js');
 module.exports ={
 
     context:path.resolve('js'),
-    entry:["./sub", "./app.js"],
+    entry:["./app.js"],
     output:{
         path:path.resolve('build/js/'),
         publicPath:'/public/assets/js/',
@@ -27,6 +27,10 @@ module.exports ={
                 query: {
                     presets: ['es2015']
                 }
+            },{
+                test:/\.css$/,
+                exclude: /node_modules/,
+                loader: 'style-loader!css-loader',//css loader first
             }
         ]
     },
