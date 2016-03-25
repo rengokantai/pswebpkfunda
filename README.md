@@ -165,3 +165,49 @@ module.exports ={
     }
 }
 ```
+######4 add sourcemap to debug (need to add a debugger;)
+```
+webpack -d (-p)
+webpack-dev-server -d
+```
+######5
+
+load respectively
+```
+var path = require('path');
+var webpack = require('webpack');
+
+var common = new webpack.optimize.CommonsChunkPlugin('shared.js');
+module.exports ={
+
+    context:path.resolve('js'),
+    entry:{
+        a:'./a.js',
+        b:'./b.js'
+    },
+    output:{
+        path:path.resolve('build/js/'),
+        publicPath:'/public/assets/js/',
+        filename:"[name].js"
+    },
+    plugins:[common],
+    devServer:{
+        contentBase:'public'
+    },
+    module:{
+        loaders:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
+            }
+        ]
+    },
+    resolve:{
+        extensions:['','.js']
+    }
+}
+```
