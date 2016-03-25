@@ -13,18 +13,29 @@ module.exports ={
     context:path.resolve('js'),
     entry:["./app.js"],
     output:{
-        path:path.resolve('build/'),
-        publicPath:'/public/assets/',
+        path:path.resolve('build/js/'),
+        publicPath:'/public/assets/js/',
         filename:"bundle.js"
-    },
+    },noParse: [
+        path.resolve('./node_modules/jquery')],
     plugins:[
-        new Extract("style.css")
+        new Extract("style.css"),
+        new webpack.ProvidePlugin({
+            $:"jquery",
+            jQuery:"jquery",
+            "window.jQuery":"jquery"
+        })
     ],
     devServer:{
         contentBase:'public'
     },
     module:{
-        loaders:[
+        loaders:[{test: require.resolve('jquery'), loader: 'expose?jQuery'},
+            {
+                test:/\.json$/,
+                exclude: /node_modules/,
+                loader: 'json-loader!' + path.resolve('loaders/strip')
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
