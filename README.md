@@ -16,4 +16,24 @@ module.exports ={
 webpack --watch
 ```
 - config
-
+```
+module.exports ={
+    entry:"./app.js",
+    output:{
+        filename:"bundle.js"
+    },
+    watch: true
+}
+```
+install devserver
+```
+npm install -g webpack-dev-server
+```
+run server
+```
+webpack-dev-server
+```
+run server concisely
+```
+webpack-dev-server
+```

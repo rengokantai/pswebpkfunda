@@ -42,13 +42,23 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Hernan Y.Ke on 2016/3/24.
+	 */
+	__webpack_require__(1);
+	document.write(`hernan.`);
+	console.log(`write`);
+
+/***/ },
+/* 1 */
 /***/ function(module, exports) {
 
 	/**
 	 * Created by Hernan Y.Ke on 2016/3/24.
 	 */
-	document.write("hernan");
-	console.log("write");
+	console.log('sub');
 
 /***/ }
 /******/ ]);
