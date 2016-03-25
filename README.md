@@ -37,3 +37,31 @@ run server concisely
 ```
 webpack-dev-server
 ```
+######6,7 loader, preloader
+```
+module.exports ={
+    entry:["./sub", "./app.js"],
+    output:{
+        filename:"bundle.js"
+    },
+    module:{
+        preloaders:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'jshint-loader'
+            }
+        ],
+        loaders:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            }
+        ]
+    },
+    resolve:{
+        extensions:['','.js']
+    }
+}
+```
