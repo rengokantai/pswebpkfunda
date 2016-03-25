@@ -1,4 +1,4 @@
 html{
     height:100%;
-    background: linear-gradient(to bottom, red 0%, black 100%);
+    background: url('../images/1.jpg'),  linear-gradient(to bottom, red 0%, black 100%);
 }
