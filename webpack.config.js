@@ -35,8 +35,8 @@ module.exports ={
             },{
                 test:/\.css$/,
                 exclude: /node_modules/,
-                //loader: 'style-loader!css-loader'//css loader first
-                loader: Extract.extract("style-loader","css-loader")
+                loader: 'style-loader!css-loader!autoprefixer-loader'//css loader first
+                //loader: Extract.extract("style-loader","css-loader")
             },{
                 test:/\.scss$/,
                 exclude: /node_modules/,

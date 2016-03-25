@@ -1,3 +1,4 @@
-body{
-    border-radius: 200px;
+html{
+    height:100%;
+    background: linear-gradient(to bottom, red 0%, black 100%);
 }
